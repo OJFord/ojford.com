@@ -1,3 +1,24 @@
+provider "cloudflare" {
+  email = "${var.cloudflare_email}"
+  token = "${var.cloudflare_token}"
+}
+
+resource "cloudflare_record" "www" {
+  domain  = "ojford.com"
+  name    = "www"
+  value   = "ojford.com"
+  type    = "CNAME"
+  proxied = "false"
+}
+
+resource "cloudflare_record" "bare" {
+  domain  = "ojford.com"
+  name    = "ojford.com"
+  value   = "${scaleway_ip.aedile.ip}"
+  type    = "A"
+  proxied = "false"
+}
+
 provider "scaleway" {
   organization = "${var.scaleway_access_key}"
   access_key   = "${var.scaleway_token}"

@@ -1,3 +1,11 @@
+variable "cloudflare_email" {
+  type = "string"
+}
+
+variable "cloudflare_token" {
+  type = "string"
+}
+
 variable "scaleway_access_key" {
   type = "string"
 }

@@ -10,3 +10,8 @@ variable "scaleway_region" {
   type    = "string"
   default = "par1"
 }
+
+variable "aedile_server_type" {
+  type    = "string"
+  default = "VC1S"
+}

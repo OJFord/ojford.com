@@ -1,0 +1,57 @@
+==================================================================
+https://keybase.io/ojford
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://ojford.com
+  * I am ojford (https://keybase.io/ojford) on keybase.
+  * I have a public key ASAsAwsAXFxba9E1A7c0LV8CRQGNisJxFYFQQkqDAApx7Qo
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid":
+"010104f3280f6a92c0a7ce04fb5b502df592b0f69d8a6d8fcf0ba5ade265d80297df0a",
+            "host": "keybase.io",
+            "kid":
+"01202c030b005c5c5b6bd13503b7342d5f0245018d8ac271158150424a83000a71ed0a",
+            "uid": "4327a522850d18d29d88e994c1b45f19",
+            "username": "ojford"
+        },
+        "service": {
+            "hostname": "ojford.com",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "client": {
+        "name": "keybase.io go client",
+        "version": "1.0.18"
+    },
+    "ctime": 1482058900,
+    "expire_in": 504576000,
+    "merkle_root": {
+        "ctime": 1482058862,
+        "hash":
+"deaeac55f2073aeeb7c38a1f0202baef5256353f5cae91a5ac0a2f4f05282d3286199cfd5d95c4717cfb7f0556b801f833a2633c68e69689c9952d937818122e",
+        "seqno": 765959
+    },
+    "prev": "383a7ea5dd0fe77bde2317cfefc8b96e87f9aa43f1eaefbc2304070296bdbef5",
+    "seqno": 48,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgLAMLAFxcW2vRNQO3NC1fAkUBjYrCcRWBUEJKgwAKce0Kp3BheWxvYWTFAvF7ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTAxMDRmMzI4MGY2YTkyYzBhN2NlMDRmYjViNTAyZGY1OTJiMGY2OWQ4YTZkOGZjZjBiYTVhZGUyNjVkODAyOTdkZjBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwMmMwMzBiMDA1YzVjNWI2YmQxMzUwM2I3MzQyZDVmMDI0NTAxOGQ4YWMyNzExNTgxNTA0MjRhODMwMDBhNzFlZDBhIiwidWlkIjoiNDMyN2E1MjI4NTBkMThkMjlkODhlOTk0YzFiNDVmMTkiLCJ1c2VybmFtZSI6Im9qZm9yZCJ9LCJzZXJ2aWNlIjp7Imhvc3RuYW1lIjoib2pmb3JkLmNvbSIsInByb3RvY29sIjoiaHR0cHM6In0sInR5cGUiOiJ3ZWJfc2VydmljZV9iaW5kaW5nIiwidmVyc2lvbiI6MX0sImNsaWVudCI6eyJuYW1lIjoia2V5YmFzZS5pbyBnbyBjbGllbnQiLCJ2ZXJzaW9uIjoiMS4wLjE4In0sImN0aW1lIjoxNDgyMDU4OTAwLCJleHBpcmVfaW4iOjUwNDU3NjAwMCwibWVya2xlX3Jvb3QiOnsiY3RpbWUiOjE0ODIwNTg4NjIsImhhc2giOiJkZWFlYWM1NWYyMDczYWVlYjdjMzhhMWYwMjAyYmFlZjUyNTYzNTNmNWNhZTkxYTVhYzBhMmY0ZjA1MjgyZDMyODYxOTljZmQ1ZDk1YzQ3MTdjZmI3ZjA1NTZiODAxZjgzM2EyNjMzYzY4ZTY5Njg5Yzk5NTJkOTM3ODE4MTIyZSIsInNlcW5vIjo3NjU5NTl9LCJwcmV2IjoiMzgzYTdlYTVkZDBmZTc3YmRlMjMxN2NmZWZjOGI5NmU4N2Y5YWE0M2YxZWFlZmJjMjMwNDA3MDI5NmJkYmVmNSIsInNlcW5vIjo0OCwidGFnIjoic2lnbmF0dXJlIn2jc2lnxEACL6MkGc2tWER+12+dboevG4THSXRj3VtPc1yGq7vRkyDHxK1029CLh8SAO4VtINDbF43qldySFDa/dEaVi8wDqHNpZ190eXBlIKRoYXNogqR0eXBlCKV2YWx1ZcQgkd+VEj6l0+BIL20PoyJrKfcPlj3YoG4ICwWVCHXFwLajdGFnzQICp3ZlcnNpb24B
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/ojford
+
+==================================================================

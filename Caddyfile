@@ -1,4 +1,15 @@
-ojford.com, localhost {
+ojford.com {
     gzip
-    browse /static
+
+    log /var/log/access.log {
+        rotate {
+            size 100
+        }
+    }
+
+    proxy / https://ojford.keybase.pub/envelope/ {
+        except .well-known/* assets/*
+    }
+    
+    root static
 }

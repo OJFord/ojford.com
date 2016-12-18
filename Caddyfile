@@ -27,3 +27,14 @@ ojford.com/.well-known {
     gzip
     root static/.well-known
 }
+
+searx.ojford.com {
+    git {
+        repo git@github.com:OJFord/searx
+        path $PROJECT_ROOT_SEARX
+        hook /gh_webhook $GITHUB_WEBHOOK_KEY
+        then systemctl reload caddy
+    }
+
+    import $PROJECT_ROOT_SEARX/Caddy*
+}

@@ -21,6 +21,9 @@ Environment=CLOUDFLARE_API_KEY=<%= ENV['CLOUDFLARE_API_KEY'] %>
 ; git add-on needs webhook secret
 Environment=GITHUB_WEBHOOK_KEY=<%= ENV['GITHUB_WEBHOOK_KEY'] %>
 
+; Project roots
+Environment=PROJECT_ROOT_SEARX=/var/www/searx
+
 ; Run from the served project
 WorkingDirectory=/var/www/ojford.com
 

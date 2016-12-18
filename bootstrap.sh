@@ -6,6 +6,7 @@ caddy_features="git cloudflare"
 repo_name="ojford.com"
 repo="/var/git/$repo_name"
 served="/var/www/$repo_name"
+chown www-data:www-data /var/www
 
 if ! hash caddy 2>/dev/null; then
     echo "Installing Caddy with: $caddy_features..."

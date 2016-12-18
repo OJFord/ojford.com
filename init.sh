@@ -1,28 +1,43 @@
 #!/bin/sh
+set -e
 
-# Addons for the server (urlencoded query string)
-caddy_features=""
+secret=$1
+
+# Addons for the server (space separated)
+caddy_features="git"
 
 repo_name="ojford.com"
 repo="/var/git/$repo_name"
 served="/var/www/$repo_name"
 
 if ! hash caddy 2>/dev/null; then
-    wget "https://caddyserver.com/download/build?os=linux&arch=amd64&features=$caddy_features" -O caddy.gz
-    tar -xvf caddy.gz --directory=caddy
-    mv caddy/caddy /usr/local/bin
+    build_params="os=linux&arch=amd64&features=${caddy_features// /%2C}"
+    wget "https://caddyserver.com/download/build?$build_params" -O caddy.gz
+    tar -xvf caddy.gz --directory=/tmp
+    mv /tmp/caddy /usr/local/bin
     chmod 755 /usr/local/bin/caddy
-    mv caddy/init/linux-systemd/caddy.service /etc/systemd/system
-    chmod 744 /etc/systemd/system/caddy.service
-    rm -r caddy
-    
+    mv /tmp/init/linux-systemd/caddy.service /etc/systemd/system
+    chmod 644 /etc/systemd/system/caddy.service
+
     # Non-root access to ports <1024
     setcap 'cap_net_bind_service=+ep' /usr/local/bin/caddy
 
     mkdir -p /etc/caddy
-    echo 'import $served/Caddyfile' >> /etc/caddy/Caddyfile
+    # Dummy Caddyfile that serves only to clone the repo with the real one
+    cat << EOF > /etc/caddy/Caddyfile
+ojford.com
+tls off
+git {
+    repo https://github.com/OJFord/$repo_name
+    path $repo
+    hook /gh_webhook $secret
+    then git --git-dir=$repo/.git checkout-index -a -f --prefix=$served/
+    then ln -sf $served/Caddyfile /etc/caddy/Caddyfile 
+}
+EOF
     chown -R root:www-data /etc/caddy
     chmod 444 /etc/caddy/Caddyfile
+    mkdir -p "$repo" "$served"
 
     mkdir -p /etc/ssl/caddy
     chown -R www-data:root /etc/ssl/caddy
@@ -30,17 +45,6 @@ if ! hash caddy 2>/dev/null; then
 
     # Squashes Caddy warning
     ulimit -n 8192
-fi
-
-if [ -d "$repo" ]; then
-    mkdir -p "$repo" "$served" && cd "$repo"
-    git init --bare
-
-    echo "#!/bin/sh" > hooks/post-receive
-    echo "git --work-tree=$served --git-dir=$repo checkout -f" >> hooks/post-receive
-    echo "chown -R www-data:www-data $served" >> hooks/post-receive
-    echo "chmod -R 555 $served" >> hooks/post-receive
-    chmod +x hooks/post-receive
 fi
 
 systemctl enable caddy

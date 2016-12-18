@@ -1,4 +1,8 @@
 ojford.com {
+    tls {
+        dns cloudflare
+    }
+
     gzip
 
     log /var/log/access.log {

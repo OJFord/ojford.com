@@ -2,7 +2,7 @@
 set -e
 
 # Addons for the server (space separated)
-caddy_features="git"
+caddy_features="git cloudflare"
 
 repo_name="ojford.com"
 repo="/var/git/$repo_name"

@@ -8,7 +8,7 @@ resource "cloudflare_record" "www" {
   name    = "www"
   value   = "ojford.com"
   type    = "CNAME"
-  proxied = "false"
+  proxied = "true"
 }
 
 resource "cloudflare_record" "bare" {
@@ -16,7 +16,7 @@ resource "cloudflare_record" "bare" {
   name    = "ojford.com"
   value   = "${scaleway_ip.aedile.ip}"
   type    = "A"
-  proxied = "false"
+  proxied = "true"
 }
 
 provider "scaleway" {

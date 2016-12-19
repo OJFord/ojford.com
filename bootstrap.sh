@@ -19,7 +19,6 @@ if ! hash caddy 2>/dev/null; then
     chmod 755 /usr/local/bin/caddy
 
     echo "Setting Caddy to run on startup..."
-    mv /tmp/init/linux-systemd/caddy.service /etc/systemd/system
     chmod 644 /etc/systemd/system/caddy.service
     systemctl enable caddy
 

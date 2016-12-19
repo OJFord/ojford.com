@@ -1,8 +1,6 @@
 #!/bin/sh
 set -e
 
-secret=$1
-
 # Addons for the server (space separated)
 caddy_features="git"
 
@@ -30,7 +28,7 @@ tls off
 git {
     repo https://github.com/OJFord/$repo_name
     path $repo
-    hook /gh_webhook $secret
+    hook /gh_webhook $GITHUB_WEBHOOK_KEY
     then git --git-dir=$repo/.git checkout-index -a -f --prefix=$served/
     then ln -sf $served/Caddyfile /etc/caddy/Caddyfile 
 }

@@ -8,6 +8,22 @@ ojford.com {
     proxy / https://ojford.keybase.pub/envelope/ {
         except .well-known/* assets/*
     }
+}
 
+ojford.com/assets {
+    tls {
+        dns cloudflare
+    }
+
+    gzip
     root static
+}
+
+ojford.com/.well-known {
+    tls {
+        dns cloudflare
+    }
+
+    gzip
+    root static/.well-known
 }

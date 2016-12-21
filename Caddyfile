@@ -5,15 +5,9 @@ ojford.com {
 
     gzip
 
-    log /etc/caddy/log {
-        rotate {
-            size 100
-        }
-    }
-
     proxy / https://ojford.keybase.pub/envelope/ {
         except .well-known/* assets/*
     }
-    
+
     root static
 }

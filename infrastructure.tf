@@ -35,7 +35,7 @@ resource "scaleway_server" "aedile" {
   image = "${data.scaleway_image.docker.id}"
 }
 
-resource "null_resource" "aedile" {
+resource "null_resource" "aedile_systemd" {
   connection {
     type = "ssh"
     host = "${scaleway_server.aedile.public_ip}"
@@ -54,6 +54,18 @@ resource "null_resource" "aedile" {
   provisioner "file" {
     source      = "/tmp/caddy.service"
     destination = "/etc/systemd/system/caddy.service"
+  }
+}
+
+resource "null_resource" "aedile_bootstrap" {
+  depends_on = [
+    "null_resource.aedile_systemd",
+  ]
+
+  connection = {
+    type = "ssh"
+    host = "${scaleway_server.aedile.public_ip}"
+    user = "root"
   }
 
   provisioner "remote-exec" {

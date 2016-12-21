@@ -25,23 +25,17 @@ if ! hash caddy 2>/dev/null; then
     echo "Giving Caddy  access to ports <1024..."
     setcap 'cap_net_bind_service=+ep' /usr/local/bin/caddy
 
-    echo "Setting Caddy to clone & run $repo..."
-    mkdir -p /etc/caddy
-    # Dummy Caddyfile that serves only to clone the repo with the real one
-    cat << END_CF > /etc/caddy/Caddyfile
-ojford.com
-tls off
-git {
-    repo https://github.com/OJFord/$repo_name
-    path $repo
-    hook /gh_webhook $GITHUB_WEBHOOK_KEY
-    then git --git-dir=$repo/.git checkout-index -a -f --prefix=$served/
-    then ln -sf $served/Caddyfile /etc/caddy/Caddyfile 
-}
-END_CF
+    echo "Cloning projects..."
     mkdir -p "$repo" "$served"
     chown -R www-data:www-data "$repo"
     chown -R www-data:www-data "$served"
+    ssh-keyscan github.com >> ~/.ssh/known_hosts # we may have git+ssh submodules
+    git clone --recursive "https://github.com/OJFord/$repo_name" "$repo"
+    git --git-dir="$repo/.git" checkout-index -a -f --prefix="$served/"
+
+    echo "Setting Caddy to serve projects..."
+    mkdir -p /etc/caddy
+    ln -s "$served/Caddyfile" /etc/caddy/Caddyfile
 
     echo "Setting permissions on Caddy data..."
     chown -R root:www-data /etc/caddy

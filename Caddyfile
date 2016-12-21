@@ -5,7 +5,7 @@ ojford.com {
 
     gzip
 
-    log /var/log/access.log {
+    log /etc/caddy/log {
         rotate {
             size 100
         }

@@ -11,8 +11,8 @@ served="/var/www/$repo_name"
 if ! hash caddy 2>/dev/null; then
     echo "Installing Caddy with: $caddy_features..."
     build_params="os=linux&arch=amd64&features=${caddy_features// /%2C}"
-    wget "https://caddyserver.com/download/build?$build_params" -O caddy.gz
-    tar -xvf caddy.gz --directory=/tmp
+    curl "https://caddyserver.com/download/build?$build_params" -o /tmp/caddy.gz
+    tar -xvf /tmp/caddy.gz --directory=/tmp
     mv /tmp/caddy /usr/local/bin
 
     echo "Setting Caddy permissions..."

@@ -23,3 +23,7 @@ variable "aedile_server_type" {
   type    = "string"
   default = "VC1S"
 }
+
+variable "github_webhook_key" {
+  type = "string"
+}

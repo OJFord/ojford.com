@@ -35,6 +35,32 @@ resource "scaleway_server" "aedile" {
   image = "${data.scaleway_image.docker.id}"
 }
 
+resource "null_resource" "aedile" {
+  connection {
+    type = "ssh"
+    host = "${scaleway_server.aedile.public_ip}"
+    user = "root"
+  }
+
+  provisioner "local-exec" {
+    command = <<EOF
+      CLOUDFLARE_EMAIL=${var.cloudflare_email}
+      CLOUDFLARE_API_KEY=${var.cloudflare_token}
+      GITHUB_WEBHOOK_KEY=${var.github_webhook_key}
+      erb caddy.service.erb > /tmp/caddy.service
+    EOF
+  }
+
+  provisioner "file" {
+    source      = "/tmp/caddy.service"
+    destination = "/etc/systemd/system/caddy.service"
+  }
+
+  provisioner "remote-exec" {
+    script = "bootstrap.sh"
+  }
+}
+
 data "scaleway_image" "docker" {
   architecture = "x86_64"
   name         = "Docker"

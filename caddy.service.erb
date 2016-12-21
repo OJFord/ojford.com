@@ -21,8 +21,11 @@ Environment=CLOUDFLARE_API_KEY=<%= ENV['CLOUDFLARE_API_KEY'] %>
 ; git add-on needs webhook secret
 Environment=GITHUB_WEBHOOK_KEY=<%= ENV['GITHUB_WEBHOOK_KEY'] %>
 
+; Run from the served project
+WorkingDirectory=/var/www/ojford.com
+
 ; Always set "-root" to something safe in case it gets forgotten in the Caddyfile.
-ExecStart=/usr/local/bin/caddy -log stdout -agree=true -conf=/etc/caddy/Caddyfile -root=/var/tmp
+ExecStart=/usr/local/bin/caddy -log stdout -agree=true -root=/var/tmp
 ExecReload=/bin/kill -USR1 $MAINPID
 
 ; Limit the number of file descriptors; see `man systemd.exec` for more limit settings.

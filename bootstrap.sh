@@ -40,6 +40,8 @@ git {
 }
 END_CF
     mkdir -p "$repo" "$served"
+    chown -R www-data:www-data "$repo"
+    chown -R www-data:www-data "$served"
 
     echo "Setting permissions on Caddy data..."
     chown -R root:www-data /etc/caddy
@@ -52,4 +54,8 @@ END_CF
 
     echo "Changing misc. Caddy-recommended settings..."
     ulimit -n 8192
+
+    echo "Starting Caddy server..."
+    systemctl daemon-reload
+    systemctl restart caddy
 fi

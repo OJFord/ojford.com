@@ -44,9 +44,9 @@ resource "null_resource" "aedile_systemd" {
 
   provisioner "local-exec" {
     command = <<EOF
-      CLOUDFLARE_EMAIL=${var.cloudflare_email}
-      CLOUDFLARE_API_KEY=${var.cloudflare_token}
-      GITHUB_WEBHOOK_KEY=${var.github_webhook_key}
+      CLOUDFLARE_EMAIL=${var.cloudflare_email} \
+      CLOUDFLARE_API_KEY=${var.cloudflare_token} \
+      GITHUB_WEBHOOK_KEY=${var.github_webhook_key} \
       erb caddy.service.erb > /tmp/caddy.service
     EOF
   }

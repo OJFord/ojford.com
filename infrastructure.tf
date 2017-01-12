@@ -38,6 +38,7 @@ resource "scaleway_server" "aedile" {
 resource "null_resource" "aedile_systemd" {
   triggers {
     server_id = "${scaleway_server.aedile.id}"
+    service   = "${base64sha256(file("${path.module}/caddy.service.erb"))}"
   }
 
   connection {
@@ -64,6 +65,8 @@ resource "null_resource" "aedile_systemd" {
 resource "null_resource" "aedile_bootstrap" {
   triggers {
     server_id = "${scaleway_server.aedile.id}"
+    script    = "${base64sha256(file("${path.module}/bootstrap.sh"))}"
+    conf      = "${base64sha256(file("${path.module}/Caddyfile"))}"
   }
 
   depends_on = [

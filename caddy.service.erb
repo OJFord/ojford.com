@@ -14,6 +14,10 @@ Group=www-data
 ; Letsencrypt-issued certificates will be written to this directory.
 Environment=HOME=/etc/ssl/caddy
 
+; Basic auth
+Environment=BASIC_AUTH_USER=<%= ENV['BASIC_AUTH_USER'] %>
+Environment=BASIC_AUTH_PSWD=<%= ENV['BASIC_AUTH_PSWD'] %>
+
 ; TLS needs Cloudflare access
 Environment=CLOUDFLARE_EMAIL=<%= ENV['CLOUDFLARE_EMAIL'] %>
 Environment=CLOUDFLARE_API_KEY=<%= ENV['CLOUDFLARE_API_KEY'] %>

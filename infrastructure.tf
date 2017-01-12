@@ -49,6 +49,8 @@ resource "null_resource" "aedile_systemd" {
 
   provisioner "local-exec" {
     command = <<EOF
+      BASIC_AUTH_USER=${var.basic_auth_user} \
+      BASIC_AUTH_PSWD=${var.basic_auth_pswd} \
       CLOUDFLARE_EMAIL=${var.cloudflare_email} \
       CLOUDFLARE_API_KEY=${var.cloudflare_token} \
       GITHUB_WEBHOOK_KEY=${var.github_webhook_key} \

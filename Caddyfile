@@ -29,6 +29,8 @@ ojford.com/.well-known {
 }
 
 searx.ojford.com {
+    basicauth / {$BASIC_AUTH_USER} {$BASIC_AUTH_PSWD}
+
     git {
         repo git@github.com:OJFord/searx
         path {$PROJECT_ROOT_SEARX}

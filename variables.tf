@@ -1,3 +1,11 @@
+variable "basic_auth_user" {
+  type = "string"
+}
+
+variable "basic_auth_pswd" {
+  type = "string"
+}
+
 variable "cloudflare_email" {
   type = "string"
 }

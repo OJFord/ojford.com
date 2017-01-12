@@ -7,9 +7,6 @@ repo_name="ojford.com"
 repo="/var/git/$repo_name"
 served="/var/www/$repo_name"
 
-chown www-data:www-data /var/www
-usermod --append --groups=docker www-data
-
 if ! hash caddy 2>/dev/null; then
     echo "Installing Caddy with: $caddy_features..."
     build_params="os=linux&arch=amd64&features=${caddy_features// /%2C}"
@@ -40,6 +37,8 @@ else
     git clone --recursive "https://github.com/OJFord/$repo_name" "$repo"
 fi
 git --git-dir="$repo/.git" checkout-index -a -f --prefix="$served/"
+chown www-data:www-data /var/www
+usermod --append --groups=docker www-data
 
 echo "Setting Caddy to serve projects..."
 mkdir -p /etc/caddy

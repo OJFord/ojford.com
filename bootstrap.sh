@@ -31,14 +31,14 @@ if git --git-dir="$repo/.git" rev-parse; then
     git --git-dir="$repo/.git" checkout origin/master
 else
     mkdir -p "$repo" "$served"
+    chown www-data:www-data /var/www
     chown -R www-data:www-data "$repo"
     chown -R www-data:www-data "$served"
     ssh-keyscan github.com >> ~/.ssh/known_hosts # we may have git+ssh submodules
     git clone --recursive "https://github.com/OJFord/$repo_name" "$repo"
+    chown -R root:www-data .project_git_template/hooks
 fi
 git --git-dir="$repo/.git" checkout-index -a -f --prefix="$served/"
-chown www-data:www-data /var/www
-usermod --append --groups=docker www-data
 
 echo "Setting Caddy to serve projects..."
 mkdir -p /etc/caddy
@@ -55,6 +55,9 @@ chmod 0770 /etc/ssl/caddy
 
 echo "Allowing Caddy to restart itself..."
 echo "%www-data ALL= NOPASSWD: /bin/systemctl reload caddy" > /etc/sudoers.d/caddy-reload
+
+echo "Allowing Caddy to run Docker..."
+usermod --append --groups=docker www-data
 
 echo "Changing misc. Caddy-recommended settings..."
 ulimit -n 8192

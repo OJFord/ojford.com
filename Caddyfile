@@ -35,7 +35,7 @@ searx.ojford.com {
         repo git@github.com:OJFord/searx
         path {$PROJECT_ROOT_SEARX}
         hook /gh_webhook {$GITHUB_WEBHOOK_KEY}
-        then systemctl reload caddy
+        args --template=.project_git_template
     }
 
     import {$PROJECT_ROOT_SEARX}/Caddy*

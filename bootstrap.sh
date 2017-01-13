@@ -7,12 +7,22 @@ repo_name="ojford.com"
 repo="/var/git/$repo_name"
 served="/var/www/$repo_name"
 
-if ! hash caddy 2>/dev/null; then
+install_caddy(){
     echo "Installing Caddy with: $caddy_features..."
     build_params="os=linux&arch=amd64&features=${caddy_features// /%2C}"
     curl "https://caddyserver.com/download/build?$build_params" -o /tmp/caddy.gz
     tar -xvf /tmp/caddy.gz --directory=/tmp
     mv /tmp/caddy /usr/local/bin
+}
+
+if ! hash caddy 2>/dev/null; then
+    install_caddy
+fi
+
+expect_plugins=$(echo "$caddy_features" | wc -w)
+actual_plugins=$(caddy -plugins | grep -E "${caddy_features// /|}")
+if [ "$actual_plugins" == "$expect_plugins" ]; then
+    install_caddy
 fi
 
 echo "Setting Caddy permissions..."

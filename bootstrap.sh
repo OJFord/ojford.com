@@ -53,6 +53,9 @@ mkdir -p /etc/ssl/caddy
 chown -R www-data:root /etc/ssl/caddy
 chmod 0770 /etc/ssl/caddy
 
+echo "Allowing Caddy to restart itself..."
+echo "%www-data ALL= NOPASSWD: /bin/systemctl reload caddy" > /etc/sudoers.d/caddy-reload
+
 echo "Changing misc. Caddy-recommended settings..."
 ulimit -n 8192
 

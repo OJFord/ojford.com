@@ -3,29 +3,18 @@ ojford.com {
         dns cloudflare
     }
 
-    gzip
-
-    proxy / https://ojford.keybase.pub/envelope/ {
-        except .well-known/* assets/*
+    rewrite {
+        if {path} starts_with /.well-known
+        to {path}
     }
-}
-
-ojford.com/assets {
-    tls {
-        dns cloudflare
+    rewrite {
+        regexp /assets/(.*)
+        to {1}
     }
+    rewrite / index.html
 
     gzip
     root static
-}
-
-ojford.com/.well-known {
-    tls {
-        dns cloudflare
-    }
-
-    gzip
-    root static/.well-known
 }
 
 searx.ojford.com {

@@ -1,8 +1,3 @@
-provider "cloudflare" {
-  email = "${var.cloudflare_email}"
-  token = "${var.cloudflare_token}"
-}
-
 resource "cloudflare_record" "www" {
   domain  = "ojford.com"
   name    = "www"
@@ -17,12 +12,6 @@ resource "cloudflare_record" "bare" {
   value   = "${scaleway_ip.aedile.ip}"
   type    = "A"
   proxied = "true"
-}
-
-provider "scaleway" {
-  organization = "${var.scaleway_access_key}"
-  access_key   = "${var.scaleway_token}"
-  region       = "${var.scaleway_region}"
 }
 
 resource "scaleway_ip" "aedile" {

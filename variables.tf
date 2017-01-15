@@ -26,6 +26,18 @@ variable "cloudflare_token" {
   type = "string"
 }
 
+variable "github_webhook_key" {
+  type = "string"
+}
+
+variable "mailgun_api_key" {
+  type = "string"
+}
+
+variable "smtp_password" {
+  type = "string"
+}
+
 variable "scaleway_access_key" {
   type = "string"
 }
@@ -42,8 +54,4 @@ variable "scaleway_region" {
 variable "aedile_server_type" {
   type    = "string"
   default = "VC1S"
-}
-
-variable "github_webhook_key" {
-  type = "string"
 }

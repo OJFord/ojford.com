@@ -4,6 +4,12 @@ module "blog" {
   subdomain = "blog"
 }
 
+module "mailproxy" {
+  source        = "github.com/OJFord/mailproxy"
+  domain        = "ojford.com"
+  smtp_password = "${var.smtp_password}"
+}
+
 module "searx" {
   source = "github.com/OJFord/searx"
   domain = "ojford.com"

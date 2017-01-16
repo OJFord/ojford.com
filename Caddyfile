@@ -7,6 +7,14 @@ ojford.com/.well-known {
     root .well-known
 }
 
+ojford.com {
+    tls {
+        dns cloudflare
+    }
+
+    redir / https://blog.ojford.com/ 302
+}
+
 searx.ojford.com {
     basicauth / {$BASIC_AUTH_USER} {$BASIC_AUTH_PSWD}
 

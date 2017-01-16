@@ -1,20 +1,10 @@
-ojford.com {
+ojford.com/.well-known {
     tls {
         dns cloudflare
     }
 
-    rewrite {
-        if {path} starts_with /.well-known
-        to {path}
-    }
-    rewrite {
-        regexp /assets/(.*)
-        to {1}
-    }
-    rewrite / index.html
-
     gzip
-    root static
+    root .well-known
 }
 
 searx.ojford.com {
